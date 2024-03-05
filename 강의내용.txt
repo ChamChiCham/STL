@@ -1,0 +1,14 @@
+기존 c++
+- class : function / variable
+- 자료 생성 방법 1. STACK 2.DATA 3. Free Store
+- generic -> template 
+
+
+기존 c++
+특정 자료형에 집중
+
+
+STL
+자료형과 무관
+자료구조 + 알고리즘
+* 자료의 갯수가 많다
