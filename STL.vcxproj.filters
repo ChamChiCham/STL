@@ -2,5 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\save.cpp">
+      <Filter>save</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="save">
+      <UniqueIdentifier>{3654474f-43e7-4dad-8e64-5970ff7f872f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\save.h">
+      <Filter>save</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
