@@ -7,7 +7,9 @@
 #include <fstream>
 #include <print>
 #include <vector>
+#include <chrono>
 #include <algorithm>
+#include <format>
 
 void save(std::string_view);
 
@@ -37,7 +39,25 @@ void save(std::string_view fileName)
 	// STL 자료구조와 알고리즘을 이용하여 기록한다 (좋은건 아니다) 
 	std::vector<char> v{ std::istreambuf_iterator<char>{in}, {} };
 
+	// 현재 time_point를 얻는다.
+	auto now = std::chrono::system_clock::now(); // epoch
+
+	// UTC 시간 형식으로 변환
+	auto utc = std::chrono::system_clock::to_time_t(now);
+
+	// 현지 시간으로 변환
+	auto lt = std::localtime(&utc);
+
+	// 한국 형식으로 출력한다. (출력스트림의 지역을 변환)
+	auto old = out.imbue(std::locale("ko_KR"));
+
+	// 시간을 기록한다.
+	out.imbue(old);
+
+
+	out << "===================================" << std::endl;
+	out << fileName << std::put_time(lt, "%x %A %X") << std::endl;
+	out << "===================================" << std::endl;
+
 	std::copy(v.begin(), v.end(), std::ostreambuf_iterator<char>{ out });
-
-
 }
