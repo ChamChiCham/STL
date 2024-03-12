@@ -1,8 +1,8 @@
 #include <iostream>
 #include <random>
-#include <print>
-#include <algorithm>
 #include <array>
+#include <fstream>
+#include <print>
 #include "save.h"
 
 /**
@@ -20,38 +20,19 @@ int main()
 {
 	std::array<int, 100> a; // 앞으로 T[N]은 사용하지 않는다. -> array<T, N> 사용
 
-	sizeof a;
-
 	for (auto& num : a) {
 		num = uid(dre);
 	}
 
+	// [문제] 파일 "int값들.txt"에 a의 int값을 모두 저장하라.
+
+	std::ofstream out{ "int값들.txt" };
+	// C++ 언어는 garbage collection이 없음. 메모리 처리를 해준다.
+	// RAII: 객체가 생성되는 시점에 Resource를 관리한다. out.close()를 사용하지 않아도 된다.
+
 	for (const auto num : a) {
-		std::print("{:8}", num);
-		// std::print(std::cout, "{:8}", a[i]);
-		// 내가 cout 말고 다른 ostream을 사용하고 싶으면 cout 자리에 명시한다.
+		std::print(out, "{:8}", num);
 	}
-	std::cout << std::endl;
-
-	// [문제 2-1] a의 값중 가장 큰 값을 찾아 출력하시오.
-
-	// stl 사용 전의 코드.
-	auto max = a[0];
-	// auto max = std::numeric_limits<int>::min();
-	for (const auto num : a) {
-		if (num > max) { max = num; }
-	}
-	std::println("Max Value: {}", max);
-	
-	// stl 사용 이후 코드.
-	std::println("Max Value: {}", *std::max_element(a.begin(), a.end()));
-	// 이때 end는 마지막 원소의 다음이다.
-
-	// stl을 사용하는 이유
-	// 1. stl 코드는 최적의 성능을 가지도록 되어 있다.
-	// 2. 손으로 짠 코드에서 발생할 수 있는 오류를 해결
-	// 3. 코드 작성 속도 향상
-
 
 	// save("src\\main.cpp");
 }
