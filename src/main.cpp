@@ -1,52 +1,25 @@
-#include <array>
-#include <iostream>
 #include <fstream>
 #include <print>
-#include <numeric>
+#include <array>
 #include "save.h"
 
 /**
-* [문제 4] int 100개를 저장할 공간을 확보하라.
-* int 값을 1부터 시작하는 정수로 채워라.
-* 파일에 기록해라.
+* [문제 5] int값 1000개를 "int값들"에 저장하였다
+* 파일은 binary 모드로 열었고
+* 값은 메모리 크기 그대로 4'000바이트를 기록하였다.
+* int값 중 제일 큰 값을 찾아 화면에 출력하라.
 */
-
-// 자동으로 초기화 해준다.
-// std::array<int, 100> a;
 
 
 int main()
 {
-	// int 100개를 default로 초기화 하겠다.
-	std::array<int, 100> a{};
+	std::array<int, 1000> a{};
 	
-	// 아래 코드는 사용하지 않는다.
-	/*int i{};
-	for (int& num : a) {
-		num = ++i;
-	}*/
+	std::ifstream in("int값들", std::ios::binary);
 
-	// 아래의 코드를 사용한다.
-	std::iota(a.begin(), a.end(), 1);
+	if (!in) { exit(-1); }
 
-	for (auto const num : a) {
-		std::print("{:8}", num);
-	}
+	in.read((char*)a.data(), a.size() * sizeof(int));
 
-	// std::ios::binary: 변환하지 말고 그대로 저장하라.
-	std::ofstream out("int값들.txt", std::ios::binary);
-
-	/*for (auto const num : a) {
-		std::print(out, "{} ", num);
-	}*/
-
-	// int 100개를 저장하기 위해 필요한 공간은?
-	// "{} "  -> write
-	
-	out.write((char*)a.data(), a.size() * sizeof(int));
-
-	// 왜 401바이트? 운영체제에서 text mode로 저장할 때 엔터키를 원래는 1바이트에서 2바이트로 저장해서.
-
-
-	save("src\\main.cpp");
+	std::print("Max value: {}", *std::max_element(a.begin(), a.end()));
 }
