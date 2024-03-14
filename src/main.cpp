@@ -1,38 +1,22 @@
 #include <iostream>
-#include <random>
-#include <array>
 #include <fstream>
+#include <algorithm>
 #include <print>
 #include "save.h"
 
 /**
-* [문제 2] int 100개를 저장할 공간을 만들어라.
-* [0, 99'999] 범위의 값을 int 100개를 할당하라.
-* TODO: 화면에 값을 출력한다.
-* 
+* [문제 3] "int값들.txt"에는 몇 개인지 모르는 int값이 있다.
+* 제일 큰 값을 찾아 화면에 출력하라.
 */
-
-// 용량이 크기 때문에 STACK 말고 DATA에 하나만 만들어서 돌려 사용한다.
-std::default_random_engine dre;
-std::uniform_int_distribution uid{ 0, 99'999 };
 
 int main()
 {
-	std::array<int, 100> a; // 앞으로 T[N]은 사용하지 않는다. -> array<T, N> 사용
+	std::ifstream in{ "int값들.txt" };
+	if (!in) { exit(-1); }
 
-	for (auto& num : a) {
-		num = uid(dre);
-	}
+	int num;
 
-	// [문제] 파일 "int값들.txt"에 a의 int값을 모두 저장하라.
-
-	std::ofstream out{ "int값들.txt" };
-	// C++ 언어는 garbage collection이 없음. 메모리 처리를 해준다.
-	// RAII: 객체가 생성되는 시점에 Resource를 관리한다. out.close()를 사용하지 않아도 된다.
-
-	for (const auto num : a) {
-		std::print(out, "{:8}", num);
-	}
-
+	//std::print("Max Value: {}", std::max_element(std::ifstream_iterator<int>{in}, {}));
+	std::print("Max Value: {}", *std::max_element(std::istream_iterator<int>{in}, {}));
 	// save("src\\main.cpp");
 }
