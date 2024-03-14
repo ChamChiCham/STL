@@ -45,3 +45,23 @@ int a[100];
 + cash hit
 
 
+== 3/14 2.2 ==
+
+array<int, 100>
+
+이 메모리를 문자 말고 그대로 저장할 순 없을까?
+
+-> 저수준 출력
+함수(어디에?, 뭘?)
+(out, a.data(), 400)(가장 효율적인 코드) -> cpu가 개입하지 않는 명령어 -> DMA
+
+File I/O
+
+Open mode:
+1. text mode 로 열게 되면 (0x0A -> 0x0A0D)	->	high(가공)
+2. binary mode 변형 없이 그대로			-\>	low(read, write)
+
+
+
+
+

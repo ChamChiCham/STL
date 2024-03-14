@@ -223,3 +223,189 @@ inline void change(T& a, T& b)
 {
 	std::swap<T>(a, b);
 }
+===================================
+src\main.cpp 03/14/24 Thursday 13:41:46
+===================================
+#include <array>
+#include <iostream>
+#include "save.h"
+
+/**
+* [문제 4] int 100개를 저장할 공간을 확보하라.
+* int 값을 1부터 시작하는 정수로 채워라.
+* 파일에 기록해라.
+*/
+
+
+int main()
+{
+	// int 100개를 default로 초기화 하겠다.
+	std::array<int, 100> a{};
+	
+	for (const int num : a) {
+		std::cout << num << std::endl;
+	}
+
+	save("src\\main.cpp");
+}
+===================================
+src\main.cpp 03/14/24 Thursday 13:45:47
+===================================
+#include <array>
+#include <iostream>
+#include <print>
+#include "save.h"
+
+/**
+* [문제 4] int 100개를 저장할 공간을 확보하라.
+* int 값을 1부터 시작하는 정수로 채워라.
+* 파일에 기록해라.
+*/
+
+// 자동으로 초기화 해준다.
+std::array<int, 100> a;
+
+int main()
+{
+	// int 100개를 default로 초기화 하겠다.
+	// std::array<int, 100> a{};
+	
+	for (int i{ 0 }; i < a.size(); ++i) {
+		a[i] = i + 1;
+	}
+
+	for (const int num : a) {
+		std::print("{:8}", num);
+	}
+
+	save("src\\main.cpp");
+}
+===================================
+src\main.cpp 03/14/24 Thursday 13:47:24
+===================================
+#include <array>
+#include <iostream>
+#include <print>
+#include "save.h"
+
+/**
+* [문제 4] int 100개를 저장할 공간을 확보하라.
+* int 값을 1부터 시작하는 정수로 채워라.
+* 파일에 기록해라.
+*/
+
+// 자동으로 초기화 해준다.
+// std::array<int, 100> a;
+
+
+int main()
+{
+	// int 100개를 default로 초기화 하겠다.
+	std::array<int, 100> a{};
+	
+	int i{};
+	for (int& num : a) {
+		num = ++i;
+	}
+
+	for (const int num : a) {
+		std::print("{:8}", num);
+	}
+
+	save("src\\main.cpp");
+}
+===================================
+src\main.cpp 03/14/24 Thursday 14:02:20
+===================================
+#include <array>
+#include <iostream>
+#include <fstream>
+#include <print>
+#include <numeric>
+#include "save.h"
+
+/**
+* [문제 4] int 100개를 저장할 공간을 확보하라.
+* int 값을 1부터 시작하는 정수로 채워라.
+* 파일에 기록해라.
+*/
+
+// 자동으로 초기화 해준다.
+// std::array<int, 100> a;
+
+
+int main()
+{
+	// int 100개를 default로 초기화 하겠다.
+	std::array<int, 100> a{};
+	
+	// 아래 코드는 사용하지 않는다.
+	/*int i{};
+	for (int& num : a) {
+		num = ++i;
+	}*/
+
+	// 아래의 코드를 사용한다.
+	std::iota(a.begin(), a.end(), 1);
+
+	for (const int num : a) {
+		std::print("{:8}", num);
+	}
+
+	std::ofstream out("int100개.txt");
+
+	for (const auto num : a) {
+		std::print(out, "{:8}", num);
+	}
+
+	save("src\\main.cpp");
+}
+===================================
+src\main.cpp 03/14/24 Thursday 14:04:17
+===================================
+#include <array>
+#include <iostream>
+#include <fstream>
+#include <print>
+#include <numeric>
+#include "save.h"
+
+/**
+* [문제 4] int 100개를 저장할 공간을 확보하라.
+* int 값을 1부터 시작하는 정수로 채워라.
+* 파일에 기록해라.
+*/
+
+// 자동으로 초기화 해준다.
+// std::array<int, 100> a;
+
+
+int main()
+{
+	// int 100개를 default로 초기화 하겠다.
+	std::array<int, 100> a{};
+	
+	// 아래 코드는 사용하지 않는다.
+	/*int i{};
+	for (int& num : a) {
+		num = ++i;
+	}*/
+
+	// 아래의 코드를 사용한다.
+	std::iota(a.begin(), a.end(), 1);
+
+	for (auto const num : a) {
+		std::print("{:8}", num);
+	}
+
+	std::ofstream out("int값들.txt");
+
+	for (auto const num : a) {
+		std::print(out, "{:8}", num);
+	}
+
+	// int 100개를 저장하기 위해 필요한 공간은?
+
+
+	save("src\\main.cpp");
+}
