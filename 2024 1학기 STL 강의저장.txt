@@ -598,3 +598,276 @@ auto main() -> int
 	save("src\\main.cpp");
 }
 
+===================================
+src\main.cpp 03/21/24 Thursday 13:49:03
+===================================
+#include <iostream>
+#include <array>
+#include <string>
+#include "save.h"
+
+/**
+* 실행파일의 메모리 구조 - STACK, CODE, DATA, Free Store(HEAP)
+*/
+
+using std::cout;
+using std::endl;
+
+int main()
+{
+
+	// 변수 순서대로 주소가 만들어지는게 아니다.
+	cout << endl;
+	int num;
+	cout << std::addressof(num) << endl;
+
+	std::array<int, 10> a;
+	std::cout << "STACK" << std::endl;
+	std::cout << "std::array<int, 100> - " << &a << std::endl;
+	std::cout << "a[0] - a[9]" << std::endl;
+	for (int& num : a)
+		std::cout << &num << std::endl;
+
+	cout << endl;
+	std::string str{"string"};
+	cout << std::addressof(str) << endl;
+
+
+	// 변수 순서대로 주소가 만들어지는게 아니다.
+	/*cout << endl;
+	int num;
+	cout << std::addressof(num) << endl;*/
+
+
+	save("src\\main.cpp");
+}
+
+===================================
+src\main.cpp 03/21/24 Thursday 13:53:45
+===================================
+#include <iostream>
+#include <array>
+#include <string>
+#include "save.h"
+
+/**
+* 실행파일의 메모리 구조 - STACK, CODE, DATA, Free Store(HEAP)
+*/
+
+using std::cout;
+using std::endl;
+
+// main과 같은 동네에 살고 있다.
+void asd( int a )
+{
+	int num;
+	cout << std::addressof(num) << endl;
+	cout << std::addressof(a) << endl;
+}
+
+int main()
+{
+
+	// 변수 순서대로 주소가 만들어지는게 아니다.
+	cout << endl;
+	int num;
+	cout << std::addressof(num) << endl;
+
+	asd(123);
+
+	std::array<int, 10> a;
+	std::cout << "STACK" << std::endl;
+	std::cout << "std::array<int, 100> - " << &a << std::endl;
+	std::cout << "a[0] - a[9]" << std::endl;
+	for (int& num : a)
+		std::cout << &num << std::endl;
+
+	cout << endl;
+	std::string str{"string"};
+	cout << std::addressof(str) << endl;
+
+
+	// 변수 순서대로 주소가 만들어지는게 아니다.
+	/*cout << endl;
+	int num;
+	cout << std::addressof(num) << endl;*/
+
+
+	save("src\\main.cpp");
+}
+
+===================================
+src\main.cpp 03/21/24 Thursday 14:13:43
+===================================
+#include <iostream>
+#include <array>
+#include <string>
+#include "save.h"
+
+/**
+* 실행파일의 메모리 구조 - STACK, CODE, DATA, Free Store(HEAP)
+*/
+
+using std::cout;
+using std::endl;
+
+// main과 같은 동네에 살고 있다.
+void asd( int a )
+{
+	int num;
+	cout << std::addressof(num) << endl;
+	cout << std::addressof(a) << endl;
+}
+
+int main()
+{
+
+	// 변수 순서대로 주소가 만들어지는게 아니다.
+	cout << endl;
+	int num;
+	cout << std::addressof(num) << endl;
+
+	(*asd)(123);
+
+	cout << endl;
+	cout << "STACK" << endl;
+	cout << "   - num " << std::addressof(num) << endl;
+
+
+	cout << "CODE" << endl;
+	cout << "   - main " << std::addressof(main) << endl;
+	cout << "   - asd  " << std::addressof(asd) << endl;
+	cout << "   - save " << std::addressof(save) << endl;
+
+	save("src\\main.cpp");
+}
+
+===================================
+src\main.cpp 03/21/24 Thursday 14:14:08
+===================================
+#include <iostream>
+#include <array>
+#include <string>
+#include "save.h"
+
+/**
+* 실행파일의 메모리 구조 - STACK, CODE, DATA, Free Store(HEAP)
+*/
+
+using std::cout;
+using std::endl;
+
+// main과 같은 동네에 살고 있다.
+void asd( int a )
+{
+	int num;
+	cout << std::addressof(num) << endl;
+	cout << std::addressof(a) << endl;
+}
+
+int main()
+{
+
+	// 변수 순서대로 주소가 만들어지는게 아니다.
+	cout << endl;
+	int num;
+	cout << std::addressof(num) << endl;
+
+	(*asd)(123);
+
+	cout << endl;
+	cout << "STACK" << endl;
+	cout << "   - num  " << std::addressof(num) << endl;
+
+
+	cout << "CODE" << endl;
+	cout << "   - main " << std::addressof(main) << endl;
+	cout << "   - asd  " << std::addressof(asd) << endl;
+	cout << "   - save " << std::addressof(save) << endl;
+
+	save("src\\main.cpp");
+}
+
+===================================
+src\main.cpp 03/21/24 Thursday 14:16:46
+===================================
+#include <iostream>
+#include <array>
+#include <string>
+#include "save.h"
+
+/**
+* 실행파일의 메모리 구조 - STACK, CODE, DATA, Free Store(HEAP)
+*/
+
+using std::cout;
+using std::endl;
+
+void asd( int a )
+{
+	int num;
+	cout << std::addressof(num) << endl;
+	cout << std::addressof(a) << endl;
+}
+
+int main()
+{
+	long long val{ 0x7FFFFFFFFFFF };
+	cout << "사용할 수 있는 최대 메모리 값" << val << endl;
+
+	(*asd)(123);
+	int num;
+	cout << endl;
+	cout << "STACK" << endl;
+	cout << "   - num  " << std::addressof(num) << endl;
+
+
+	cout << "CODE" << endl;
+	cout << "   - main " << std::addressof(main) << endl;
+	cout << "   - asd  " << std::addressof(asd) << endl;
+	cout << "   - save " << std::addressof(save) << endl;
+
+	save("src\\main.cpp");
+}
+
+===================================
+src\main.cpp 03/21/24 Thursday 14:39:16
+===================================
+#include <iostream>
+#include <array>
+#include <string>
+#include "save.h"
+
+/**
+* 실행파일의 메모리 구조 - STACK, CODE, DATA, Free Store(HEAP)
+*/
+
+using std::cout;
+using std::endl;
+
+
+int num;
+
+int main()
+{
+	
+	int num;
+	int* p = new int;
+	
+	cout << "     STACK " << std::addressof(num) << endl;
+	cout << endl;
+
+	cout << "Free Store " << std::addressof(*p) << endl;
+	cout << endl;
+
+	cout << "      CODE " << std::addressof(main) << endl;
+	cout << endl;
+
+	cout << "      DATA " << std::addressof(::num) << endl;
+	cout << endl;
+
+
+	delete p;
+	save("src\\main.cpp");
+}
+
