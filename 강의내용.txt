@@ -84,9 +84,23 @@ begin(), end()
 === 3/21 3.2 ===
 
 빌드해서 컴파일 할 경우 *.exe 파일이 하드디스크에 생성된다.
-.exe --VS-->
 
-[ STACT ->  Free Store(HEAP)  | DATA | CODE ] 
+.exe --VS-->
+메모리에 정보를 저장하는 순서
+1. DATA
+2. CODE
+3. STACK
+4. Free Store
+[3. STACK (int num) |  매우매우큼   | 1.DATA | 2.CODE main{ int num}, f, save ]
+		   		                   -> 3. STACK에 메모리 생성
+						   int* p = new int;
+						   -> 3. p 메모리 생성
+						   -> 4. FS 중간 메모리 생성 
+이때 함수의 이름은 시작번지
+따라서 정식 호출방법은 (*f)();
+
+[ STACK |  Free Store(HEAP)  | DATA | CODE ] 
+Low   <->   High
 	main 메모리
 이론적으론 x64에서 더 큰 메모리를 사용할 수 있으나 몇십기가로 제한되어 있다.
 
