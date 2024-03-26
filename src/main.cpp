@@ -17,27 +17,59 @@
 * 1. char*		-> std::string
 * 2. T[N]		-> std::array<T,N>
 * 3. T*(raw*)	-> unique_ptr, shared_ptr(스마트 포인터)
+* 
+* RAII - 메모리, FILE, j thread, mutex
 */
+
+class Dog {
+public:
+	Dog() { std::cout << "Dog 생성" << std::endl; }
+	~Dog() { std::cout << "Dog 소멸" << std::endl; }
+};
+
+class 스마트포인터 {
+private:
+	Dog* p;
+
+
+public:
+	스마트포인터(Dog* p) : p{ p } {}
+	~스마트포인터() { delete p; }
+};
+void f()
+{
+	std::cout << "f 시작." << std::endl;
+	스마트포인터 p{ new Dog };
+
+	throw 1234;
+
+	std::cout << "f 끝." << std::endl;
+}
 
 int main()
 {
-	
-	while (true) {
-		long long num;
-		std::cin >> num;
-		// 컴파일 타임에는 알 수 없는 값.
-		// 속도가 걸림
-		int* data{ nullptr };
-		data = new int[num]{};
-		std::iota(data, data + num, 1);
-		long long sum{ std::accumulate(data, data + num, 0LL) };
-		std::cout << sum << std::endl;
-		delete[] data;
+	std::cout << "main 시작." << std::endl;
 
+	try {
+		f();
+	}
+	catch (...) { // ... elipses
+
+		// stack에 있는 모든 객체들의 소멸자를 호출 => 메모리가 새지 않음.
+		std::cout << "예외발생" << std::endl;
 	}
 
 
+	/**
+	* 문제가 발생하는 상황
+	* 1. memory leak
+	* 2. dangling pointer 
+	* 3. 제어경로가 복잡해 질 경우
+	* -> RAII (메모리를 자동화하는 기술)
+	*/
 
 	//save("src\main.cpp");
+
+	std::cout << "main 끝." << std::endl;
 }
 
