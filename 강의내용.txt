@@ -125,3 +125,11 @@ smart pointer:
 c++ 언어에서 메모리 관리 보장 -> stack-unwinding
 -> RAII
 
+== 3/28 4.2 ===
+
+unique_ptr<Dog>
+
+stack-unwinding
+메모리 관리 보장 -> 소멸자를 자동으로 호출한다.
+
+

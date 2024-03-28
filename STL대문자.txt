@@ -1,0 +1,27 @@
+#INCLUDE <IOSTREAM>
+#INCLUDE <MEMORY>
+#INCLUDE <STRING>
+#INCLUDE <FSTREAM>
+#INCLUDE "SAVE.H"
+
+/**
+* [문제 8] MAIN.CPP을 읽어 모든 소문자를 대문자로 변환하여
+* "STL대문자.TXT"에 저장하다.
+*/
+
+INT MAIN()
+{
+	STD::IFSTREAM IN{ "SRC\\MAIN.CPP", STD::IOS::BINARY };
+
+	IF (!IN) {
+		RETURN 1234567890;
+	}
+
+	STD::OFSTREAM OUT{ "STL대문자.TXT" };
+	CHAR C;
+	WHILE (IN.READ(&C, SIZEOF(CHAR))) {
+		OUT << (C = TOUPPER(C));
+	}
+
+}
+

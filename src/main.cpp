@@ -1,31 +1,41 @@
 #include <iostream>
 #include <memory>
+#include <string>
+#include <algorithm>
+#include <fstream>
 #include "save.h"
 
 /**
-* 
-* unique_ptr 사용 - 자원을 독점 소유(ownership)
+* [문제 8] main.cpp을 읽어 모든 소문자를 대문자로 변환하여
+* "STL대문자.txt"에 저장하다.
 */
-
-class Dog {
-public:
-	Dog() { std::cout << "Dog 생성" << std::endl; }
-	~Dog() { std::cout << "Dog 소멸" << std::endl; }
-};
 
 int main()
 {
-	// Dog 10객체를 Free Store에 만들어 본다.
+	std::ifstream in{ "src\\main.cpp", std::ios::binary };
 
-	// 이 문장은 문제없지만 불편하다. new와 delete가 짝이 되어야 하는데 delete가 없네?
-	// std::unique_ptr<Dog[]> p{new Dog[]};
+	if (!in) {
+		return 1234567890;
+	}
 
-	// 대부분의 STL 함수는 탬플릿의 인자로 deduction할 수 있으나 make_unique는 명시해야 함.
-	std::unique_ptr<Dog[]> p{ std::make_unique<Dog[]>(10) };
+	std::ofstream out{ "STL대문자.txt" };
+
+	// 효율성 면에는 다음 코드가 제일 좋음. 그러나 아래 방법 사용
+	/*char c;
+	while (in.read(&c, sizeof(char))) {
+		out << (c = toupper(c));
+	}*/
+	
+	// 가독성 면에서 이게 좋음.
+	// 근데 한번에 다루면 더 좋음. 한글자씩 읽으면 부담이 된다.
+	// 하고싶은 사람은 벡터로 한번에 넣어서 해봐라..
+	std::transform(std::istreambuf_iterator<char>{in}, {},
+		std::ostreambuf_iterator<char>{out}, [](char c) {
+			return toupper(c);
+		});
 
 
 
-	//save("src\main.cpp");
-	std::cout << "main() ended." << std::endl; // 이 문장 수행한 후 p의 객체 소멸
+
 }
 
