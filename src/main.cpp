@@ -1,41 +1,48 @@
 #include <iostream>
-#include <memory>
-#include <string>
-#include <algorithm>
-#include <fstream>
+#include <array>
+#include <random>
+#include <print>
 #include "save.h"
 
 /**
-* [문제 8] main.cpp을 읽어 모든 소문자를 대문자로 변환하여
-* "STL대문자.txt"에 저장하다.
+* [문제 9] int 100개를 저장할 공간을 확보하라.
+* int 100개의 값을 [1, 10000] 랜덤값으로 설정하라
+* int값 100개를 c의 qsort를 사용하여 오름차순으로 정렬하라
+* 정렬결과를 한 줄에 10개씩 화면에 출력하라.
+* 
+* callable type -> 정렬 예제에서 시작
 */
+
+std::default_random_engine dre;
+std::uniform_int_distribution uid(1, 10000);
 
 int main()
 {
-	std::ifstream in{ "src\\main.cpp", std::ios::binary };
-
-	if (!in) {
-		return 1234567890;
+	std::array<int, 100> data;
+	for (auto& n : data) {
+		n = uid(dre);
 	}
 
-	std::ofstream out{ "STL대문자.txt" };
+	for (const auto& n : data) {
+		std::print("{:8}", n);
+	}
+	std::cout << std::endl;
 
-	// 효율성 면에는 다음 코드가 제일 좋음. 그러나 아래 방법 사용
-	/*char c;
-	while (in.read(&c, sizeof(char))) {
-		out << (c = toupper(c));
-	}*/
-	
-	// 가독성 면에서 이게 좋음.
-	// 근데 한번에 다루면 더 좋음. 한글자씩 읽으면 부담이 된다.
-	// 하고싶은 사람은 벡터로 한번에 넣어서 해봐라..
-	std::transform(std::istreambuf_iterator<char>{in}, {},
-		std::ostreambuf_iterator<char>{out}, [](char c) {
-			return toupper(c);
+
+	// 여기서 qsort로 정렬한다 - qsort는 c함수이지만 generic 함수이다
+	// qsort( 어디 몇개 한개의 크기는 너안의 정렬방법을 알려줘,)
+
+	// 함수를 변수처럼 사용???
+	//	int (*vari)(const void*, const void*) = func;
+
+	qsort(data.data(), data.size(), sizeof(int), [] /*함수 자체 시작번지*/ (const void* lhs, const void* rhs) -> int {
+		return *(int*)lhs - *(int*)rhs;
 		});
+		
 
-
-
+	for (const auto& n : data) {
+		std::print("{:8}", n);
+	}
 
 }
 
