@@ -1,24 +1,10 @@
 #include <iostream>
-#include <numeric>
-#include <thread>
+#include <memory>
 #include "save.h"
 
 /**
-* [문제 7] int num 값을 입력받으시오.
-* free store에서 int를 num개 할당받아라
-* int값을 1부터 시작하는 정수로 채워라.
-* int값의 합계를 출력하라
-* 이 과정을 영원히 반복하라.
-* 해결하는 코드를 답지에 적어라.
 * 
-* free store - RAII
-* 
-* c++언어에서 사용하지 않도록 권고
-* 1. char*		-> std::string
-* 2. T[N]		-> std::array<T,N>
-* 3. T*(raw*)	-> unique_ptr, shared_ptr(스마트 포인터)
-* 
-* RAII - 메모리, FILE, j thread, mutex
+* unique_ptr 사용 - 자원을 독점 소유(ownership)
 */
 
 class Dog {
@@ -27,49 +13,19 @@ public:
 	~Dog() { std::cout << "Dog 소멸" << std::endl; }
 };
 
-class 스마트포인터 {
-private:
-	Dog* p;
-
-
-public:
-	스마트포인터(Dog* p) : p{ p } {}
-	~스마트포인터() { delete p; }
-};
-void f()
-{
-	std::cout << "f 시작." << std::endl;
-	스마트포인터 p{ new Dog };
-
-	throw 1234;
-
-	std::cout << "f 끝." << std::endl;
-}
-
 int main()
 {
-	std::cout << "main 시작." << std::endl;
+	// Dog 10객체를 Free Store에 만들어 본다.
 
-	try {
-		f();
-	}
-	catch (...) { // ... elipses
+	// 이 문장은 문제없지만 불편하다. new와 delete가 짝이 되어야 하는데 delete가 없네?
+	// std::unique_ptr<Dog[]> p{new Dog[]};
 
-		// stack에 있는 모든 객체들의 소멸자를 호출 => 메모리가 새지 않음.
-		std::cout << "예외발생" << std::endl;
-	}
+	// 대부분의 STL 함수는 탬플릿의 인자로 deduction할 수 있으나 make_unique는 명시해야 함.
+	std::unique_ptr<Dog[]> p{ std::make_unique<Dog[]>(10) };
 
 
-	/**
-	* 문제가 발생하는 상황
-	* 1. memory leak
-	* 2. dangling pointer 
-	* 3. 제어경로가 복잡해 질 경우
-	* -> RAII (메모리를 자동화하는 기술)
-	*/
 
 	//save("src\main.cpp");
-
-	std::cout << "main 끝." << std::endl;
+	std::cout << "main() ended." << std::endl; // 이 문장 수행한 후 p의 객체 소멸
 }
 
