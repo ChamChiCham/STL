@@ -1,42 +1,32 @@
 #include <iostream>
+#include <functional>
 #include "save.h"
 
 /**
-* 람다의 정체
+* 
+* 
+* -> 모든 호출 가능타입을 대표하는 클래스가 -> function
 */
 
 
-void jump() {
-	std::cout << "jump" << std::endl;
+
+void f( /*int를 리턴하고 인자로 int, int를 받을 수 있다면 어떤 거라도 다 좋아 */
+		std::function<int(int, int)> y
+)
+{
+	std::cout << y(3, 5) << std::endl;
 }
 
-void slide() {
-	std::cout << "slide" << std::endl;
+int x(int a, int b)
+{
+	return a * b;
 }
-
 
 int main()
 {
-	void (*f)() = jump;
-	while (true) {
-		std::cout << "a 키를 누르면 기능을 수행";
-		char c;
-		std::cin >> c;
-
-		if ('a' == c) {
-			f = jump;
-		}
-
-		if ('s' == c) {
-			if (f == jump) {
-				f = slide;
-			}
-			else {
-				f = jump;
-			}
-		}
-		f();
-	}
+	// 집에가서 dog 넣어봐 뻗을거임 아마
+	f([](int, int) -> int { return 333; });
+	f(x);
 
 
 }
