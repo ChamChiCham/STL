@@ -132,4 +132,5 @@ unique_ptr<Dog>
 stack-unwinding
 메모리 관리 보장 -> 소멸자를 자동으로 호출한다.
 
+== 4/2 5.1 ===
 
