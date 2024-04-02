@@ -1,32 +1,38 @@
 #include <iostream>
 #include <functional>
+#include <memory>
 #include "save.h"
 
 /**
 * 
-* 
-* -> 모든 호출 가능타입을 대표하는 클래스가 -> function
 */
 
-
-
-void f( /*int를 리턴하고 인자로 int, int를 받을 수 있다면 어떤 거라도 다 좋아 */
-		std::function<int(int, int)> y
-)
+class String
 {
-	std::cout << y(3, 5) << std::endl;
-}
+	size_t len;
+	std::unique_ptr<char[]> p{};
 
-int x(int a, int b)
-{
-	return a * b;
-}
+public:
+	String(const char* s)
+		: len(strlen(s))
+	{
+		p = std::make_unique<char[]>(len);
+		memcpy(p.get(), s, len);
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const String& s) {
+		for (size_t i{ 0 }; i < s.len; ++i) {
+			os << s.p[i];
+		}
+		os << std::endl;
+		return os;
+	}
+};
 
 int main()
 {
-	// 집에가서 dog 넣어봐 뻗을거임 아마
-	f([](int, int) -> int { return 333; });
-	f(x);
+	String s{ "STL 공부를 위한 클래스" };
+	std::cout << s << std::endl;
 
 
 }
