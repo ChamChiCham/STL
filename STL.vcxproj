@@ -21,9 +21,11 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\save.cpp" />
+    <ClCompile Include="src\string.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\save.h" />
+    <ClInclude Include="src\string.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

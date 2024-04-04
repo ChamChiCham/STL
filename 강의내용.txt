@@ -134,3 +134,27 @@ stack-unwinding
 
 == 4/2 5.1 ===
 
+
+[ STACK |  Free Store(HEAP)  | CODE | DATA ] 
+
+std::sort 정렬
+default 연산자는 <로 정렬
+
+Dog로 정렬
+함수와 마찬가지로 
+operator()(int, int): code segment에 작성되어 있음
+
+STL
+
+container + Algorithm
+	iterator
+
+String other = s;
+=> 이게 왜 안되는가?
+String에서 default 복사생성자를 만드는데
+unique_ptr의 복사생성자가 delete되어 있기 때문.
+
+
+
+
+

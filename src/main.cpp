@@ -2,37 +2,25 @@
 #include <functional>
 #include <memory>
 #include "save.h"
+#include "string.h"
 
 /**
-* 
+* String 구현
 */
 
-class String
-{
-	size_t len;
-	std::unique_ptr<char[]> p{};
-
-public:
-	String(const char* s)
-		: len(strlen(s))
-	{
-		p = std::make_unique<char[]>(len);
-		memcpy(p.get(), s, len);
-	}
-
-	friend std::ostream& operator<<(std::ostream& os, const String& s) {
-		for (size_t i{ 0 }; i < s.len; ++i) {
-			os << s.p[i];
-		}
-		os << std::endl;
-		return os;
-	}
-};
 
 int main()
 {
+	/**
+	* String other = s;
+	* = > 이게 왜 안되는가 ?
+	*	String에서 default 복사생성자를 만드는데
+	*	unique_ptr의 복사생성자가 delete되어 있기 때문.
+	*	=> 따로 복사생성자를 만들어야 한다.
+	*/
 	String s{ "STL 공부를 위한 클래스" };
+	String f;
+	f = s;
+	std::cout << f << std::endl;
 	std::cout << s << std::endl;
-
-
 }
