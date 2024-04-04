@@ -1,6 +1,6 @@
 #include <iostream>
-#include <functional>
-#include <memory>
+#include <array>
+#include <algorithm>
 #include "save.h"
 #include "string.h"
 
@@ -8,19 +8,27 @@
 * String 구현
 */
 
+extern bool check;
+
 
 int main()
 {
-	/**
-	* String other = s;
-	* = > 이게 왜 안되는가 ?
-	*	String에서 default 복사생성자를 만드는데
-	*	unique_ptr의 복사생성자가 delete되어 있기 때문.
-	*	=> 따로 복사생성자를 만들어야 한다.
-	*/
-	String s{ "STL 공부를 위한 클래스" };
-	String f;
-	f = s;
-	std::cout << f << std::endl;
-	std::cout << s << std::endl;
+	std::array<String, 5> a{
+		"2024년", "4월", "4일", "목요일", "행복한 STL"
+	};
+
+	for (const auto& s : a) {
+		std::cout << s << std::endl;
+	}
+
+	// a를 길이 오름차순으로 정렬하라.
+	check = true;
+	std::sort(a.begin(), a.end(), [](const String& lhs, const String& rhs) {
+		return lhs.size() < rhs.size();
+		});
+	check = false;
+
+	for (const auto& s : a) {
+		std::cout << s << std::endl;
+	}
 }
