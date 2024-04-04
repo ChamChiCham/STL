@@ -14,19 +14,17 @@ extern bool check;
 int main()
 {
 	std::array<String, 5> a{
-		"2024년", "4월", "4일", "목요일", "행복한 STL"
+		"12983478912374",
+		"1925789012835708912357",
+		"353845834590341581592",
+		"12418247128212",
+		"12312312323312312556789"
 	};
 
-	for (const auto& s : a) {
-		std::cout << s << std::endl;
+	// [문제 10] a의 각 String이 관리하는 글자를 오름차순으로 정렬하라
+	for (auto& s : a) {
+		std::sort(s.begin(), s.end());
 	}
-
-	// a를 길이 오름차순으로 정렬하라.
-	check = true;
-	std::sort(a.begin(), a.end(), [](const String& lhs, const String& rhs) {
-		return lhs.size() < rhs.size();
-		});
-	check = false;
 
 	for (const auto& s : a) {
 		std::cout << s << std::endl;

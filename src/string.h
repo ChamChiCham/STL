@@ -20,9 +20,12 @@ public:
 
 	// 이동 생성자 / 이동 할당 연산자
 	// 이동 시멘틱스(moving semantics)를 사용하여 객체를 다른 객체로 이동시키는 데 사용됩니다.
-	String(String&& other);
-	String& operator=(String&& rhs);
+	//String(String&& other);
+	//String& operator=(String&& rhs);
 
+
+	char* begin() const;
+	char* end() const;
 
 	const size_t size() const;
 
