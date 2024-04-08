@@ -65,37 +65,39 @@ String& String::operator=(const String& rhs)
 	return *this;
 }
 
-//String::String(String&& other)
-//	: len{other.len}
-//	, id{++uid}
-//{
-//	p.reset(other.p.get());
-//	other.p.release();
-//	other.len = 0;
-//
-//	if (check) {
-//		std::println("[{}] - 이동 생성자, 개수: {}, 주소: {}",
-//			id, len, static_cast<void*>(p.get()));
-//	}
-//}
-//
-//String& String::operator=(String&& rhs)
-//{
-//	if (this == &rhs)
-//		return *this;
-//
-//	len = rhs.len;
-//	p.reset(rhs.p.get());
-//	rhs.len = 0;
-//	rhs.p.reset();
-//
-//	if (check) {
-//		std::println("[{}] - 이동 할당 연산자, 개수: {}, 주소: {}",
-//			id, len, static_cast<void*>(p.get()));
-//	}
-//
-//	return *this;
-//}
+String::String(String&& other)
+	: len{other.len}
+	, id{++uid}
+{
+
+	p = std::move(other.p);
+	other.p.release();
+	other.len = 0;
+
+	if (check) {
+		std::println("[{}] - 이동 생성자, 개수: {}, 주소: {}",
+			id, len, static_cast<void*>(p.get()));
+	}
+}
+
+String& String::operator=(String&& rhs)
+{
+	if (this == &rhs)
+		return *this;
+
+	len = rhs.len;
+	
+	p = std::move(rhs.p);
+	rhs.p.release();
+	rhs.len = 0;
+
+	if (check) {
+		std::println("[{}] - 이동 할당 연산자, 개수: {}, 주소: {}",
+			id, len, static_cast<void*>(p.get()));
+	}
+
+	return *this;
+}
 
 char* String::begin() const
 {
