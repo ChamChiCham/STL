@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <array>
 #include <list>
 #include <set>
@@ -11,26 +12,17 @@
 
 int main()
 {
-	std::array<int, 3> a{ 1, 2, 3 };
+	std::array<String, 50> a;
 
-	// a[0] + sizeof(int) * -10
-	//std::cout << a[-10] << std::endl;
-	//std::cout << a[10] << std::endl;
+	/**
+	* [문제] STL.cpp의 단어를 a에 저장하라.
+	* 길이오름파순으로 a를 정렬하라.
+	* 화면에 출력하라.
+	*/
 
-	int num;
-	std::cin >> num;
-
-	// 일반저긴 상황
-	/*if (0 < num and num < 2)
-		std::cout << a[num] << std::endl;*/
-
-	// 이제는 확인하고 싶으면 이렇게
-	/*try {
-		std::cout << a.at(num) << std::endl;
-	}
-	catch (const std::exception& e) {
-		std::cout << e.what() << std::endl;
-	}*/
-
+	std::ifstream in{ "src\\main.cpp" };
+	
+	for (int i = 0; i < 50; ++i)
+		in >> a[i]; // in >> std::string을 이용해서 하자
 
 }	
