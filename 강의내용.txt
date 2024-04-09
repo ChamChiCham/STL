@@ -200,3 +200,9 @@ vector<T>  배열이지만 확장 가능
 deque<T>  양방향 확장 가능
 forward_list<T> 단일 연결리스트
 list<T>  양뱡향 연결리스트
+
+
+	std::array<int, 3> a{ 1, 2, 3 };
+	std::cout << a[-10] << std::endl;
+	std::cout << a[10] << std::endl;
+
