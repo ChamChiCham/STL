@@ -1,32 +1,56 @@
 #include <iostream>
 #include <array>
-#include <algorithm>
+#include <list>
+#include <set>
 #include "save.h"
 #include "string.h"
 
 /**
-* String 구현
+* STL container - Containers are objects that store other objects
+* + 자기 자신을 포함 가능.
 */
-
-extern bool check;
-
 
 int main()
 {
-	std::array<String, 5> a{
-		"12983478912374",
-		"1925789012835708912357",
-		"353845834590341581592",
-		"12418247128212",
-		"12312312323312312556789"
-	};
+	// variable
+	// 언어가 제공하는 기본 데이터
+	// int a;
+	
+	// a가 컨테이너
+	// std::array<int, 10>는 타입
+	// std::array<int, 10> a;
+	
+	// 컨테이너 속에 컨테이너가 들어갈 수 있다.
+	// std::array< std::array<int, 10>, 10> a;
 
-	// [문제 10] a의 각 String이 관리하는 글자를 오름차순으로 정렬하라
-	for (auto& s : a) {
-		std::sort(s.begin(), s.end());
+	std::array<int, 10> a{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	
+	// begin()의 타입
+	// std::cout << typeid(a.begin()).name();
+	
+	/*std::array<int, 10>::iterator p = a.begin();
+	p.operator++();
+	std::array<int, 10>::iterator p = a.end();*/
+	
+	// 같은 코드를 list, set로도 호환가능
+	// sequencial container
+	// std::list<int> a{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	// std::set<int> a{ 6, 1, 24, 6,8,123,23 };
+
+
+	for (auto p = a.begin(); p != a.end(); ++p)
+	{
+		// dereference operator
+		std::cout << *p << std::endl;
 	}
 
-	for (const auto& s : a) {
-		std::cout << s << std::endl;
+	// range-based for -> range for
+	// 아래 코드는 위 코드로 컴파일러가 바꾸어 준다.
+	// syntactic sugar
+	for (auto& d : a) {
+		std::cout << d << std::endl;
 	}
+
+
+
 }

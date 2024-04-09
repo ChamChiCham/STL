@@ -154,7 +154,49 @@ String other = s;
 String에서 default 복사생성자를 만드는데
 unique_ptr의 복사생성자가 delete되어 있기 때문.
 
+== 4/9 6.1 ==
 
+Container 약 20
+1. Sequence
+2. Associative
+3. Unordered Associative
 
+Adaptor STACK Queue c++20 FlatSet FlatMap
 
+Algorithm 약 100
+1. Non-Modifying
+2. Modifying
+3. Sort
+4. Numeric
 
+연결점이 대략 2000개.
+-> Generic 등장
+
+ex) find()
+find()는 자료구조가 뭔지 모른다.
+이거를 알려줘야 한다.
+1. 첫 원소는? -> begin()
+2, 다음 원소는? -> operator++
+3. 지막 원소는? -> end()
+
+for ( auto i{begin()}; i != end(); ++i )
+{
+	if (3 == *i) { return i; }
+}
+return i;
+
+-> iterator (design pattern, GoF 23가지 pattern)
+
+OCP란?
+Open(새로운 자료구조를 만드는 데에는 열려있지만)
+Closed(반복자를 반드시 제공한다는 제한된 약속)
+principle
+
+새로운 자료구조를 만들었을 때 find() 기능이 수행되도록 한다.
+
+Sequence
+array<T,N>  그냥 배열
+vector<T>  배열이지만 확장 가능
+deque<T>  양방향 확장 가능
+forward_list<T> 단일 연결리스트
+list<T>  양뱡향 연결리스트
