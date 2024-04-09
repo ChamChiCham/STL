@@ -7,50 +7,30 @@
 
 /**
 * STL container - Containers are objects that store other objects
-* + 자기 자신을 포함 가능.
 */
 
 int main()
 {
-	// variable
-	// 언어가 제공하는 기본 데이터
-	// int a;
-	
-	// a가 컨테이너
-	// std::array<int, 10>는 타입
-	// std::array<int, 10> a;
-	
-	// 컨테이너 속에 컨테이너가 들어갈 수 있다.
-	// std::array< std::array<int, 10>, 10> a;
+	std::array<int, 3> a{ 1, 2, 3 };
 
-	std::array<int, 10> a{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-	
-	// begin()의 타입
-	// std::cout << typeid(a.begin()).name();
-	
-	/*std::array<int, 10>::iterator p = a.begin();
-	p.operator++();
-	std::array<int, 10>::iterator p = a.end();*/
-	
-	// 같은 코드를 list, set로도 호환가능
-	// sequencial container
-	// std::list<int> a{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-	// std::set<int> a{ 6, 1, 24, 6,8,123,23 };
+	// a[0] + sizeof(int) * -10
+	//std::cout << a[-10] << std::endl;
+	//std::cout << a[10] << std::endl;
 
+	int num;
+	std::cin >> num;
 
-	for (auto p = a.begin(); p != a.end(); ++p)
-	{
-		// dereference operator
-		std::cout << *p << std::endl;
+	// 일반저긴 상황
+	/*if (0 < num and num < 2)
+		std::cout << a[num] << std::endl;*/
+
+	// 이제는 확인하고 싶으면 이렇게
+	/*try {
+		std::cout << a.at(num) << std::endl;
 	}
-
-	// range-based for -> range for
-	// 아래 코드는 위 코드로 컴파일러가 바꾸어 준다.
-	// syntactic sugar
-	for (auto& d : a) {
-		std::cout << d << std::endl;
-	}
+	catch (const std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}*/
 
 
-
-}
+}	
