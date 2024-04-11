@@ -30,9 +30,9 @@ public:
 	const size_t size() const;
 
 	friend std::ostream& operator<<(std::ostream& os, const String& s);
-	friend std::istream& operator>>(std::istream& is, String& s);
+	//friend std::istream& operator>>(std::istream& is, String& s);
 
-	const size_t getLen() const;
+	//const size_t getLen() const;
 	
 private:
 	static size_t uid;
