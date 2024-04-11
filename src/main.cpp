@@ -3,11 +3,14 @@
 #include <array>
 #include <list>
 #include <set>
+#include <algorithm>
 #include "save.h"
 #include "string.h"
 
 /**
 * STL container - Containers are objects that store other objects
+* 
+* STL container- Sequence - vector
 */
 
 int main()
@@ -21,6 +24,14 @@ int main()
 	*/
 
 	std::ifstream in{ "src\\main.cpp" };
+
+	for (int i = 0; i < 50; ++i) {
+		in >> a[i];
+	}
+
+	std::sort(a.begin(), a.end(), [](const String& a, const String& b) {
+		return a.getLen() < b.getLen();
+		});
 	
 	for (int i = 0; i < 50; ++i)
 		in >> a[i]; // in >> std::string을 이용해서 하자
