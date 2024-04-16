@@ -14,19 +14,15 @@ extern bool check;
 
 int main()
 {
-	
-	std::vector<int> v;
-	std::cout << "개수 - " << v.size() << std::endl;
-	std::cout << "주소 - " << v.data() << std::endl;
-	std::cout << "최대 - " << v.capacity() << std::endl;
+	std::vector<char> v;
+	/*while (true) {
+		if (v.size() == v.capacity()) {
+			std::cout << "개수 - " << v.size() << std::endl;
+			std::cout << "주소 - " << v.data() << std::endl;
+			std::cout << "최대 - " << v.capacity() << std::endl;
+		}
+		v.push_back(0);
+	}*/
 
-	v.reserve(123);
-	std::cout << "개수 - " << v.size() << std::endl;
-	std::cout << "주소 - " << v.data() << std::endl;
-	std::cout << "최대 - " << v.capacity() << std::endl;
-
-
-	
-
-
+	std::cout << "vector<int> 최대 몇개? - " << v.max_size() << std::endl;
 }	
