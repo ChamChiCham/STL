@@ -206,3 +206,16 @@ list<T>  양뱡향 연결리스트
 	std::cout << a[-10] << std::endl;
 	std::cout << a[10] << std::endl;
 
+== 4/11 6.2 ===
+
+vector<int> v;
+sizeof: 24(size, capacity, pointer) + Free Store에 정보 저장
+
+정보를 옮길 때
+move를 사용하지 않고 안전한 복사 생성을 통해서 정보를 옮긴다.
+move를 사용하면 exception이 발생 가능
+
+push back는 복사 생성자를 호출하지만
+emplace_back은 쓸데없는 복사 생성자를 호출하지 않는다. 그냥 그 객체 그대로 넣는다.
+
+
