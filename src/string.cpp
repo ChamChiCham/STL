@@ -65,11 +65,11 @@ String& String::operator=(const String& rhs)
 	return *this;
 }
 
-String::String(String&& other)
+String::String(String&& other) noexcept
 	: len{other.len}
 	, id{++uid}
 {
-
+	// reset을 사용해서 바꾸자
 	p = std::move(other.p);
 	other.p.release();
 	other.len = 0;
@@ -80,13 +80,14 @@ String::String(String&& other)
 	}
 }
 
-String& String::operator=(String&& rhs)
+String& String::operator=(String&& rhs) noexcept
 {
 	if (this == &rhs)
 		return *this;
 
 	len = rhs.len;
-	
+	// reset을 사용해서 바꾸자
+	// reset(p.get());
 	p = std::move(rhs.p);
 	rhs.p.release();
 	rhs.len = 0;

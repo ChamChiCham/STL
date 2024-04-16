@@ -218,4 +218,6 @@ move를 사용하면 exception이 발생 가능
 push back는 복사 생성자를 호출하지만
 emplace_back은 쓸데없는 복사 생성자를 호출하지 않는다. 그냥 그 객체 그대로 넣는다.
 
+== 4/16 7.1 ==
 
+std::vector<String> v
