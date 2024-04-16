@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <print>
 #include <numeric>
+#include <fstream>
 #include "save.h"
 #include "string.h"
 
@@ -17,22 +18,14 @@ extern bool check;
 
 int main()
 {
-	std::vector<int> v(100);
+	// [문제] STL.cpp에 있는 소문자의 출력횟수를 출력하라.
+	// a - 10
+	// b - 8
+	// c - 0
+	// ...
+	// z - 2
 
-	std::iota(v.begin(), v.end(), 1);
-	
-	for (int num : v) {
-		std::print("{:8}", num);
-	}
-	
-	std::println("");
+	std::array<int, 26> ch{};
+	std::istream in{""}
 
-	// [문제] v에서 홀수를 제거하라.
-	std::erase_if(v, [](int x) {
-		return x & 1;
-		});
-
-	for (int num : v) {
-		std::print("{:8}", num);
-	}
 }	
