@@ -1,5 +1,6 @@
 #include "string.h"
 #include <iostream>
+#include <algorithm>
 #include <print>
 
 bool check{ false };
@@ -113,6 +114,12 @@ char* String::end() const
 const size_t String::size() const
 {
 	return len;
+}
+
+bool String::operator==(const String& other) const
+{
+	if (len != other.len) { return false; }
+	return std::equal(p.get(), p.get() + len, other.p.get());
 }
 
 std::ostream& operator<<(std::ostream& os, const String& s) {
