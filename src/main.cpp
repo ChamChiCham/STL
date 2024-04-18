@@ -1,38 +1,37 @@
 #include <iostream>
-#include <list>
-#include <array>
+#include <deque>
 #include <algorithm>
-#include <print>
-#include <numeric>
-#include <fstream>
 #include "save.h"
 #include "string.h"
 
 /**
 * STL container - Containers are objects that store other objects
 * 
-* push back(T) - amortized O(1)
-* erase (N)
+* STL container - deque
+* push_back / push_front
 */
 
 extern bool check;
 
 int main()
 {
-	std::list<String> v{ "1", "2", "4", "5"};
+	std::deque<int> d{ 1, 2, 3, 4 };
 
-	auto p = v.begin();
-	++p;
-	++p;
-
-	// [문제] v에서 3을 추가하라.
-
-	check = true;
-	v.emplace(p, "3");
-	check = false;
-
-	for (const String& s : v) {
-		std::cout << s << std::endl;
+	for (int i = 0; i < d.size(); ++i) {
+		std::cout << d[i] << " - " << &d[i] << std::endl;
 	}
-	
+	std::cout << std::endl;
+	d.push_back(5);
+
+	for (int i = 0; i < d.size(); ++i) {
+		std::cout << d[i] << " - " << &d[i] << std::endl;
+	}
+
+	std::cout << std::endl;
+	d.push_front(0);
+
+	for (int i = 0; i < d.size(); ++i) {
+		std::cout << d[i] << " - " << &d[i] << std::endl;
+	}
+
 }	
