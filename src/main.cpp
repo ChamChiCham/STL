@@ -11,7 +11,6 @@
 /**
 * STL container - Containers are objects that store other objects
 * 
-* push_back(T) - amortizer O(1)
 */
 
 extern bool check;
@@ -25,7 +24,22 @@ int main()
 	// ...
 	// z - 2
 
-	std::array<int, 26> ch{};
-	std::istream in{""}
+	std::array<int, 26> alpha_counts{};
+	std::ifstream in{ "src\\main.cpp" };
+	
+	if (not in) {
+		return -1;
+	}
+
+	char ch{};
+	while (in >> ch) {
+		if (islower(ch)) {
+			alpha_counts[ch - 'a']++;
+		}
+	}
+
+	for (int i = 0; i < 26; ++i) {
+		std::cout << static_cast<char>(i + 'a') << " - " << alpha_counts[i] << std::endl;
+	}
 
 }	
