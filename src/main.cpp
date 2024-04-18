@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <list>
 #include <array>
 #include <algorithm>
 #include <print>
@@ -11,25 +11,28 @@
 /**
 * STL container - Containers are objects that store other objects
 * 
+* push back(T) - amortized O(1)
+* erase (N)
 */
 
 extern bool check;
 
 int main()
 {
+	std::list<String> v{ "1", "2", "4", "5"};
+
+	auto p = v.begin();
+	++p;
+	++p;
+
+	// [문제] v에서 3을 추가하라.
+
 	check = true;
-
-	// 벡터는 덧붙일 때 용이한 자료구조.
-	// 중간에 지울일이 있으면 다른 자료구조를 생각하는 것이 더 좋음.
-	std::vector<String> v{ "1", "2", "3", "4", "5"};
-
-	// [문제] v에서 3을 제거하라.
-
-	std::erase(v, "3");
+	v.emplace(p, "3");
+	check = false;
 
 	for (const String& s : v) {
 		std::cout << s << std::endl;
 	}
 	
-	std::cout << "메인 끝" << std::endl;
 }	
